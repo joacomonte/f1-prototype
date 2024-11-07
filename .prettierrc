@@ -1,0 +1,33 @@
+{
+  "overrides": [
+    {
+      "files": "*",
+      "options": {
+        "printWidth": 300,
+        "singleQuote": true,
+        "trailingComma": "all",
+        "bracketSpacing": true,
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleAttributePerLine": true,
+        "arrowParens": "always",
+        "bracketSameLine": true
+      }
+    },
+    {
+      "files": "*.module.ts",
+      "options": {
+        "printWidth": 40,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "bracketSpacing": true,
+        "tabWidth": 2,
+        "useTabs": false,
+        "singleAttributePerLine": true,
+        "arrowParens": "always",
+        "bracketSameLine": true,
+        "arrayExpand": true
+      }
+    }
+  ]
+}
