@@ -121,15 +121,16 @@ export default function Home() {
         <video
           ref={videoRef}
           className="w-full rounded-lg shadow-lg transition-transform duration-300" 
-          preload="auto"
+          preload="metadata"  // Changed from auto to metadata for iOS
           playsInline
           muted
           width={1920}
           height={1080}
           webkit-playsinline="true" 
           x-webkit-airplay="allow" 
+          autoPlay  // Add autoPlay
           poster="/1frame.jpg"
-          style={{ margin: 0, verticalAlign: 'middle' }} // Added inline styles
+          style={{ margin: 0, verticalAlign: 'middle' }}
           >
           <source
             src="/banner.mp4"
