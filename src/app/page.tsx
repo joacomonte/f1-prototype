@@ -176,7 +176,7 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          className="max-w-[700px] text-left pr-[30%] py-8"
+          className="max-w-[700px] max-h-96 text-left pr-[20%] py-8"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
@@ -204,7 +204,7 @@ export default function Home() {
         </motion.div>
 
         <motion.div
-          className="max-w-[700px] text-left pr-[30%] py-8"
+          className="max-w-[700px] max-h-96 text-left pr-[20%] py-8"
           initial={{ opacity: 0, x: -100 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
