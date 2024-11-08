@@ -27,7 +27,8 @@ export default function Home() {
     cssEase: "cubic-bezier(0.45, 0, 0.55, 1)", // ease-in-out curve
     pauseOnHover: false, // prevents pausing on hover
     swipe: false, // disables manual swiping
-    touchMove: false // disables touch movement
+    touchMove: false, // disables touch movement
+    adaptiveHeight: true // enables dynamic height adjustment
   };
 
   React.useEffect(() => {
@@ -133,14 +134,14 @@ export default function Home() {
         </video>
       </div>
 
-      <div className="w-full h-[800px]">
+      <div className="w-full overflow-hidden">
       <Slider {...settings}>
         {images.map((image, index) => (
-          <div key={index} className="w-full h-[800px]">
+          <div key={index} className="w-full">
             <img
               src={image}
               alt={`Slide ${index + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-auto" // h-auto lets image maintain its aspect ratio
             />
           </div>
         ))}
