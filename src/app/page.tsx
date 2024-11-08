@@ -4,12 +4,31 @@ import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import { Maximize, Pause, Play } from 'lucide-react';
 
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const images = ['001.jpg', '002.jpg', '003.jpg', '004.jpg', '005.jpg', '006.jpg'];
+
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    speed: 1500, // increased for smoother transition
+    arrows: false,
+    cssEase: "cubic-bezier(0.45, 0, 0.55, 1)", // ease-in-out curve
+    pauseOnHover: false, // prevents pausing on hover
+    swipe: false, // disables manual swiping
+    touchMove: false // disables touch movement
+  };
 
   React.useEffect(() => {
     const videoElement = videoRef.current;
@@ -61,33 +80,7 @@ export default function Home() {
     };
   }, []);
 
-  const togglePlay = async () => {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
 
-    try {
-      if (isPlaying) {
-        await videoElement.pause();
-      } else {
-        await videoElement.play();
-      }
-    } catch (error) {
-      console.error('Error toggling video:', error);
-      setIsPlaying(false);
-    }
-  };
-  const toggleFullscreen = () => {
-    const element = containerRef.current;
-    if (!element) return;
-
-    if (!document.fullscreenElement) {
-      element.requestFullscreen();
-      setIsFullscreen(true);
-    } else {
-      document.exitFullscreen();
-      setIsFullscreen(false);
-    }
-  };
 
   return (
     <>
@@ -140,7 +133,21 @@ export default function Home() {
         </video>
       </div>
 
-      <div className="w-full flex flex-col items-center py-8">
+      <div className="w-full h-[800px]">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <div key={index} className="w-full h-[800px]">
+            <img
+              src={image}
+              alt={`Slide ${index + 1}`}
+              className="w-full h-full object-cover"
+            />
+          </div>
+        ))}
+      </Slider>
+    </div>
+
+      {/* <div className="w-full flex flex-col items-center py-8">
         <motion.div
           className="w-full px-4"
           initial={{ opacity: 0, y: 20 }}
@@ -211,7 +218,7 @@ export default function Home() {
             height={400}
           />
         </motion.div>
-      </div>
+      </div> */}
     </>
   );
 }
