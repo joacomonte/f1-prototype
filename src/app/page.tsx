@@ -17,7 +17,8 @@ export default function Home() {
 
     const handleLoadedData = () => {
       setIsLoading(false);
-      videoElement.play()
+      videoElement
+        .play()
         .then(() => {
           setIsPlaying(true);
         })
@@ -117,46 +118,26 @@ export default function Home() {
       <div
         ref={containerRef}
         className="relative w-full mx-auto group">
-
         <video
           ref={videoRef}
-          className="w-full rounded-lg shadow-lg transition-transform duration-300" 
-          preload="metadata"  // Changed from auto to metadata for iOS
+          className="w-full rounded-lg shadow-lg transition-transform duration-300"
+          preload="metadata"
           playsInline
-          muted
           width={1920}
           height={1080}
-          webkit-playsinline="true" 
-          x-webkit-airplay="allow" 
-          autoPlay  // Add autoPlay
+          webkit-playsinline="true"
+          x-webkit-airplay="allow"
           poster="/1frame.jpg"
-          style={{ margin: 0, verticalAlign: 'middle' }}
-          >
+          loop
+          muted
+          autoPlay
+          style={{ margin: 0, verticalAlign: 'middle' }}>
           <source
             src="/banner.mp4"
             type="video/mp4"
           />
           Your browser does not support the video tag.
         </video>
-
-
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-            <div className="flex gap-4 pointer-events-auto">
-              <button
-                onClick={togglePlay}
-                className="p-3 rounded-full bg-white shadow-md bg-opacity-70 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-110"
-                aria-label={isPlaying ? 'Pause' : 'Play'}>
-                {isPlaying ? <Pause className="w-6 h-6 text-black" /> : <Play className="w-6 h-6 text-black" />}
-              </button>
-              <button
-                onClick={toggleFullscreen}
-                className="p-3 rounded-full bg-white shadow-md bg-opacity-70 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-110"
-                aria-label="Toggle fullscreen">
-                <Maximize className="w-6 h-6 text-black" />
-              </button>
-            </div>
-          </div>
-
       </div>
 
       <div className="w-full flex flex-col items-center py-8">
@@ -233,4 +214,24 @@ export default function Home() {
       </div>
     </>
   );
+}
+
+{
+  /* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+  <div className="flex gap-4 pointer-events-auto">
+    <button
+      onClick={togglePlay}
+      className="p-3 rounded-full bg-white shadow-md bg-opacity-70 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-110"
+      aria-label={isPlaying ? 'Pause' : 'Play'}>
+      {isPlaying ? <Pause className="w-6 h-6 text-black" /> : <Play className="w-6 h-6 text-black" />}
+    </button>
+    <button
+      onClick={toggleFullscreen}
+      className="p-3 rounded-full bg-white shadow-md bg-opacity-70 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-110"
+      aria-label="Toggle fullscreen">
+      <Maximize className="w-6 h-6 text-black" />
+    </button>
+  </div>
+</div>
+ */
 }
