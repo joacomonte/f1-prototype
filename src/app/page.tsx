@@ -121,7 +121,7 @@ export default function Home() {
         className="relative w-full mx-auto group">
         <video
           ref={videoRef}
-          className="w-full rounded-lg shadow-lg transition-transform duration-300"
+          className="h-[790px] w-full object-cover rounded-lg shadow-lg transition-transform duration-300"
           preload="metadata"
           playsInline
           width={1920}
@@ -157,6 +157,14 @@ export default function Home() {
         </Slider>
       </div>
 
+      <Image
+        src={'/static1.png'}
+        alt={'static1'}
+        className="h-[650px] w-full object-cover"
+        width={1920} // Set appropriate width
+        height={790} // Match height with CSS
+        priority // Optional: for above-the-fold images
+      />
       <div className="flex justify-center w-full">
         <div className="flex justify-around flex-wrap items-center w-[1000px] gap-2">
           <StatDisplay
@@ -181,7 +189,14 @@ export default function Home() {
           />
         </div>
       </div>
-
+      <Image
+        src={'/static2.png'}
+        alt={'static1'}
+        className="h-[650px] w-full object-cover"
+        width={1920} // Set appropriate width
+        height={790} // Match height with CSS
+        priority // Optional: for above-the-fold images
+      />
       <div className="flex flex-col gap-12">
         <div
           className="min-w-72"
@@ -196,6 +211,15 @@ export default function Home() {
           </div>
         </div>
 
+        <Image
+          src={'/fade1.png'}
+          alt={'fade1'}
+          className="h-[790px] w-full object-cover"
+          width={1920} // Set appropriate width
+          height={790} // Match height with CSS
+          priority // Optional: for above-the-fold images
+        />
+
         <div
           className="min-w-72"
           style={{ color: '#d49600' }}>
@@ -207,6 +231,15 @@ export default function Home() {
             <h3 className="text-xl md:text-3xl">ELECTRIC</h3>
           </div>
         </div>
+
+        <Image
+          src={'/fade2.png'}
+          alt={'fade2'}
+          className="h-[790px] w-full object-cover"
+          width={1920} // Set appropriate width
+          height={790} // Match height with CSS
+          priority // Optional: for above-the-fold images
+        />
 
         <div
           className="min-w-72"
@@ -220,6 +253,15 @@ export default function Home() {
           </div>
         </div>
 
+        <Image
+          src={'/fade3.png'}
+          alt={'fade3'}
+          className="h-[790px] w-full object-cover"
+          width={1920} // Set appropriate width
+          height={790} // Match height with CSS
+          priority // Optional: for above-the-fold images
+        />
+
         <div
           className="min-w-72"
           style={{ color: '#d49600' }}>
@@ -232,6 +274,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+
       {/* <div className="w-full flex flex-col items-center py-8">
         <motion.div
           className="w-full px-4"

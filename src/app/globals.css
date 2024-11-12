@@ -4,18 +4,28 @@
 
 :root {
   --background: black;
-  --foreground: #171717;
+  --foreground: white;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: black;
-    --foreground: #ededed;
+    --foreground: white;
   }
 }
 
 body {
-  color: var(--foreground);
+  color: white;
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+.slick-slide > div {
+  height: 790px;
+}
+
+.slick-slide img {
+  height: 790px;
+  width: 100%;
+  object-fit: cover;
 }
