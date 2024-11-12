@@ -1,12 +1,13 @@
 'use client';
-import { motion } from 'framer-motion';
+import { color, motion } from 'framer-motion';
 import Image from 'next/image';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Maximize, Pause, Play } from 'lucide-react';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { StatDisplay } from './components/StatDisplay';
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -24,14 +25,14 @@ export default function Home() {
     autoplaySpeed: 3000,
     speed: 1500, // increased for smoother transition
     arrows: false,
-    cssEase: "cubic-bezier(0.45, 0, 0.55, 1)", // ease-in-out curve
+    cssEase: 'cubic-bezier(0.45, 0, 0.55, 1)', // ease-in-out curve
     pauseOnHover: false, // prevents pausing on hover
     swipe: false, // disables manual swiping
     touchMove: false, // disables touch movement
-    adaptiveHeight: true // enables dynamic height adjustment
+    adaptiveHeight: true, // enables dynamic height adjustment
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
@@ -81,21 +82,27 @@ export default function Home() {
     };
   }, []);
 
-
-
   return (
     <>
       <nav className="w-full bg-black flex justify-center">
         <div className="max-w-[700px] w-full px-4 py-3 flex items-center justify-between">
           <div className="transform hover:scale-105 transition-transform duration-200">
-            <p>LOGO</p>
+            <div className="relative w-[120px] h-[24px]">
+              <Image
+                src="/logo.svg"
+                alt="Next.js Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </div>
           </div>
 
           <div className="flex gap-4 items-center">
-            {['Home', 'Gallery', 'About Us', 'Contact'].map((item) => (
+            {['MAIN', 'MODELS', 'STORY', 'CONTACT'].map((item) => (
               <button
                 key={item}
-                className="text-white text-sm hover:text-gray-300 px-4 py-2 
+                className="text-white text-xs md:text-sm hover:text-gray-300 px-1 md:px-4 py-2 
                          transition-all duration-200 ease-in-out
                          hover:scale-105 relative
                          after:content-[''] after:absolute after:w-0 
@@ -135,19 +142,96 @@ export default function Home() {
       </div>
 
       <div className="w-full overflow-hidden">
-      <Slider {...settings}>
-        {images.map((image, index) => (
-          <div key={index} className="w-full">
-            <img
-              src={image}
-              alt={`Slide ${index + 1}`}
-              className="w-full h-auto" // h-auto lets image maintain its aspect ratio
-            />
-          </div>
-        ))}
-      </Slider>
-    </div>
+        <Slider {...settings}>
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className="w-full">
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="w-full h-auto" // h-auto lets image maintain its aspect ratio
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
 
+      <div className="flex justify-center w-full">
+        <div className="flex justify-around flex-wrap items-center w-[1000px] gap-2">
+          <StatDisplay
+            value="2.88 KW"
+            label="BATTERY CAPACITY"
+          />
+          <StatDisplay
+            value="95 Km/h"
+            label="TOP SPEED"
+          />
+          <StatDisplay
+            value="240 Kg"
+            label="WEIGHT"
+          />
+          <StatDisplay
+            value="20 KW"
+            label="DUAL MOTOR"
+          />
+          <StatDisplay
+            value="3.10x1.50x0.66m"
+            label="DIMENSIONS"
+          />
+        </div>
+      </div>
+
+      <div className="flex flex-col gap-12">
+        <div
+          className="min-w-72"
+          style={{ color: '#d49600' }}>
+          <div className="flex gap-2 items-baseline">
+            <h3 className="text-xl md:text-3xl">ICONIC</h3>
+            <h4 className="text-xs md:text-base">DESIGN</h4>
+          </div>
+          <div className="flex gap-2 items-baseline">
+            <h4 className="text-xs md:text-base">LAST</h4>
+            <h3 className="text-xl md:text-3xl">FOREVER</h3>
+          </div>
+        </div>
+
+        <div
+          className="min-w-72"
+          style={{ color: '#d49600' }}>
+          <div className="flex gap-2 items-baseline">
+            <h3 className="text-xl md:text-3xl">DETAILED</h3>
+          </div>
+          <div className="flex gap-2 items-baseline">
+            <h4 className="text-xs md:text-base">AND</h4>
+            <h3 className="text-xl md:text-3xl">ELECTRIC</h3>
+          </div>
+        </div>
+
+        <div
+          className="min-w-72"
+          style={{ color: '#d49600' }}>
+          <div className="flex gap-2 items-baseline">
+            <h3 className="text-xl md:text-3xl">BEYOND</h3>
+          </div>
+          <div className="flex gap-2 items-baseline">
+            <h4 className="text-xs md:text-base">THE</h4>
+            <h3 className="text-xl md:text-3xl">REPLICA</h3>
+          </div>
+        </div>
+
+        <div
+          className="min-w-72"
+          style={{ color: '#d49600' }}>
+          <div className="flex gap-2 items-baseline">
+            <h3 className="text-xl md:text-3xl">FEEL</h3>
+            <h4 className="text-xs md:text-base">THE</h4>
+          </div>
+          <div className="flex gap-2 items-baseline">
+            <h3 className="text-xl md:text-3xl">COSWORTH</h3>
+          </div>
+        </div>
+      </div>
       {/* <div className="w-full flex flex-col items-center py-8">
         <motion.div
           className="w-full px-4"
