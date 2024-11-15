@@ -83,9 +83,10 @@ export default function Home() {
   }, []);
 
   return (
-    <>
+    <div className="flex flex-col items-center">
+
       <nav className="w-full bg-black flex justify-center">
-        <div className="max-w-[700px] w-full px-4 py-3 flex items-center justify-between">
+        <div className="max-w-[700px] w-full px-4 py-3 flex items-center justify-between flex-wrap">
           <div className="transform hover:scale-105 transition-transform duration-200">
             <div className="relative w-[120px] h-[24px]">
               <Image
@@ -118,10 +119,10 @@ export default function Home() {
 
       <div
         ref={containerRef}
-        className="relative w-full mx-auto group">
+        className="relative w-full mx-auto max-w-[1000px] group">
         <video
           ref={videoRef}
-          className="h-[790px] w-full object-cover rounded-lg shadow-lg transition-transform duration-300"
+          className=" rounded-lg shadow-lg transition-transform duration-300 w-full min-h-[200px] h-auto object-cover object-center"
           preload="metadata"
           playsInline
           width={1920}
@@ -141,30 +142,40 @@ export default function Home() {
         </video>
       </div>
 
-      <div className="w-full overflow-hidden">
+      <div className="w-full max-w-[1000px] mx-auto">
         <Slider {...settings}>
           {images.map((image, index) => (
             <div
               key={index}
-              className="w-full">
+              className="flex items-center justify-center"
+            >
               <img
                 src={image}
                 alt={`Slide ${index + 1}`}
-                className="w-full h-auto" // h-auto lets image maintain its aspect ratio
+                className="max-h-[500px] max-w-full" // Set a maximum height and width
               />
             </div>
           ))}
         </Slider>
       </div>
 
-      <Image
-        src={'/static1.png'}
-        alt={'static1'}
-        className="h-[650px] w-full object-cover"
-        width={1920} // Set appropriate width
-        height={790} // Match height with CSS
-        priority // Optional: for above-the-fold images
-      />
+      <div className="relative">
+        <div className="relative w-full max-w-[1000px] mx-auto">
+          <Image
+            src={'/static1.png'}
+            alt={'static1'}
+            className="w-full min-h-[300px] h-auto object-cover object-center"
+            width={1920}
+            height={790}
+            priority
+          />
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+            <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
       <div className="flex justify-center w-full">
         <div className="flex justify-around flex-wrap items-center w-[1000px] gap-2">
           <StatDisplay
@@ -189,14 +200,24 @@ export default function Home() {
           />
         </div>
       </div>
-      <Image
-        src={'/static2.png'}
-        alt={'static1'}
-        className="h-[650px] w-full object-cover"
-        width={1920} // Set appropriate width
-        height={790} // Match height with CSS
-        priority // Optional: for above-the-fold images
-      />
+
+      <div className="relative">
+        <div className="relative w-full max-w-[1000px] mx-auto">
+          <Image
+            src={'/static2.png'}
+            alt={'static1'}
+            className="w-full min-h-[300px] h-auto object-cover object-center"
+            width={1920} // Set appropriate width
+            height={790} // Match height with CSS
+            priority // Optional: for above-the-fold images
+          />
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+            <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+          </div>
+        </div>
+      </div>
+
       <div className="flex flex-col gap-12">
         <div
           className="min-w-72"
@@ -211,14 +232,22 @@ export default function Home() {
           </div>
         </div>
 
-        <Image
-          src={'/fade1.png'}
-          alt={'fade1'}
-          className="h-[790px] w-full object-cover"
-          width={1920} // Set appropriate width
-          height={790} // Match height with CSS
-          priority // Optional: for above-the-fold images
-        />
+        <div className="relative">
+          <div className="relative w-full max-w-[1000px] mx-auto">
+            <Image
+              src={'/fade1.png'}
+              alt={'fade1'}
+              className="w-full min-h-[300px] h-auto object-cover object-center"
+              width={1920} // Set appropriate width
+              height={790} // Match height with CSS
+              priority // Optional: for above-the-fold images
+            />
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+              <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+            </div>
+          </div>
+        </div>
 
         <div
           className="min-w-72"
@@ -232,14 +261,22 @@ export default function Home() {
           </div>
         </div>
 
-        <Image
-          src={'/fade2.png'}
-          alt={'fade2'}
-          className="h-[790px] w-full object-cover"
-          width={1920} // Set appropriate width
-          height={790} // Match height with CSS
-          priority // Optional: for above-the-fold images
-        />
+        <div className="relative">
+          <div className="relative w-full max-w-[1000px] mx-auto">
+            <Image
+              src={'/fade2.png'}
+              alt={'fade2'}
+              className="w-full min-h-[300px] h-auto object-cover object-center"
+              width={1920} // Set appropriate width
+              height={790} // Match height with CSS
+              priority // Optional: for above-the-fold images
+            />
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+              <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+            </div>
+          </div>
+        </div>
 
         <div
           className="min-w-72"
@@ -253,14 +290,22 @@ export default function Home() {
           </div>
         </div>
 
-        <Image
-          src={'/fade3.png'}
-          alt={'fade3'}
-          className="h-[790px] w-full object-cover"
-          width={1920} // Set appropriate width
-          height={790} // Match height with CSS
-          priority // Optional: for above-the-fold images
-        />
+        <div className="relative">
+          <div className="relative w-full max-w-[1000px] mx-auto">
+            <Image
+              src={'/fade3.png'}
+              alt={'fade3'}
+              className="w-full min-h-[300px] h-auto object-cover object-center"
+              width={1920} // Set appropriate width
+              height={790} // Match height with CSS
+              priority // Optional: for above-the-fold images
+            />
+            <div className="absolute inset-0 pointer-events-none">
+              <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+              <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+            </div>
+          </div>
+        </div>
 
         <div
           className="min-w-72"
@@ -274,8 +319,12 @@ export default function Home() {
           </div>
         </div>
       </div>
+    </div>
+  );
+}
 
-      {/* <div className="w-full flex flex-col items-center py-8">
+/*
+      { <div className="w-full flex flex-col items-center py-8">
         <motion.div
           className="w-full px-4"
           initial={{ opacity: 0, y: 20 }}
@@ -346,13 +395,10 @@ export default function Home() {
             height={400}
           />
         </motion.div>
-      </div> */}
-    </>
-  );
-}
+      </div> }
+*/
 
-{
-  /* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+/* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
   <div className="flex gap-4 pointer-events-auto">
     <button
       onClick={togglePlay}
@@ -369,4 +415,3 @@ export default function Home() {
   </div>
 </div>
  */
-}
