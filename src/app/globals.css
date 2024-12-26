@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Avenir LT Std';
-  src: url('/fonts/AvenirLTStd-Book.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-}
-
-
 :root {
   --background: black;
   --foreground: white;
@@ -25,15 +17,116 @@
 body {
   color: white;
   background: var(--background);
-  font-family: 'Avenir LT Std'
+  font-family: var(--font-avenir-book);
 }
 
-/* .slick-slide > div {
-  height: 790px;
+
+.avenirBook { font-family: var(--font-avenir-book);}
+.avenirHeavy { font-family: var(--font-avenir-heavy);}
+.avenirRoman { font-family: var(--font-avenir-roman);}
+.avenirLight { font-family: var(--font-avenir-light);}
+.thonburiRegular { font-family: var(--font-thonburi-regular);}
+
+
+.iconic-design-header {
+  display: flex;
+  gap: 0.5rem;  /* equivalent to gap-2 */
+  align-items: baseline;
+  margin-top: -8px;
+  margin-bottom: -8px;
+  letter-spacing: 2px;
 }
 
-.slick-slide img {
-  height: 790px;
-  width: 100%;
-  object-fit: cover;
-} */
+.iconic-design-header h3 {
+  font-size: 21px;
+}
+
+.iconic-design-header h4 {
+  font-size: 15px;
+}
+
+@media (min-width: 768px) {
+  .iconic-design-header h3 {
+    font-size: 42px;
+  }
+  
+  .iconic-design-header h4 {
+    font-size: 30px;
+  }
+}
+
+
+
+/* From Uiverse.io by SujitAdroja */ 
+.btnExplore {
+  height: 2rem;
+  width: fit-content;
+
+  color: #d49600;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 2px solid #d49600;
+  padding: 1.5rem 3rem;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: bold;
+  background: transparent;
+  position: relative;
+  transition: all 1s;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 767px) {
+  .btnExplore {
+    width: 100%;
+  }
+}
+
+.btnExplore:hover {
+  color: black;
+}
+
+.btnExplore::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 0%;
+  top: 0;
+  left: -40px;
+  transform: skewX(45deg);
+  background-color: #d49600;
+  z-index: -1;
+  transition: all 1s;
+}
+
+.btnExplore:hover::before {
+  width: 160%;
+}
+
+
+input {
+  width: auto;
+  min-width: 18rem;
+  padding: 0 1rem;
+  border-bottom: 2px solid #d49600;
+  background: transparent;
+  padding-bottom: 0.3rem;
+  focus: none;
+  outline: none;
+}
+
+.input-select{
+  min-width: 18rem;
+  border-bottom: 2px solid #d49600;
+}
+
+.border-gold{
+  border-color: #d49600;
+}
+.border-bottom-gold{
+  border-color: transparent;
+  border-bottom: 2px solid #d49600;
+}

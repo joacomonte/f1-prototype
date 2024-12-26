@@ -15,7 +15,39 @@ export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const images = ['001.jpg', '002.jpg', '003.jpg', '004.jpg', '005.jpg', '006.jpg'];
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    country: '',
+    hearUs: '',
+    inquiry: '',
+  });
+
+  const [countryOpen, setCountryOpen] = useState(false);
+  const [inquiryOpen, setInquiryOpen] = useState(false);
+  const [hearUsOpen, setHearUs] = useState(false);
+
+  const options = ['USA', 'UK', 'Canada'];
+
+  const handleChange = (e: { target: { name: any; value: any } }) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e: { preventDefault: () => void }) => {
+    e.preventDefault();
+    console.log(formData);
+  };
+
+  const swiper1 = ['swiper1-01.jpg', 'swiper1-02.jpg', 'swiper1-03.png', 'swiper1-04.png'];
+
+  const swiper2 = ['swiper2-01.png', 'swiper2-02.png', 'swiper2-03.png', 'swiper2-04.png'];
+
+  const swiper3 = ['swiper3-01.png', 'swiper3-02.png', 'swiper3-03.png', 'swiper3-04.png'];
 
   const settings = {
     infinite: true,
@@ -83,10 +115,9 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center">
-
-      <nav className="w-full bg-black flex justify-center">
-        <div className="max-w-[700px] w-full px-4 py-3 flex items-center justify-between flex-wrap">
+    <div className="flex flex-col items-center max-w-[1300px] mx-auto">
+      <nav className="w-full bg-black/80 flex justify-center fixed top-0 left-0 right-0 z-50">
+        <div className="max-w-[650px] w-full px-4 py-3 flex items-center justify-between flex-wrap">
           <div className="transform hover:scale-105 transition-transform duration-200">
             <div className="relative w-[120px] h-[24px]">
               <Image
@@ -122,7 +153,7 @@ export default function Home() {
         className="relative w-full mx-auto max-w-[1000px] group">
         <video
           ref={videoRef}
-          className=" rounded-lg shadow-lg transition-transform duration-300 w-full min-h-[200px] h-auto object-cover object-center"
+          className=" shadow-lg transition-transform duration-300 w-full min-h-[350px] h-auto object-cover object-center"
           preload="metadata"
           playsInline
           width={1920}
@@ -142,31 +173,32 @@ export default function Home() {
         </video>
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto">
-        <Slider {...settings}>
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center"
-            >
-              <img
-                src={image}
-                alt={`Slide ${index + 1}`}
-                className="max-h-[500px] max-w-full" // Set a maximum height and width
-              />
-            </div>
-          ))}
-        </Slider>
+      <div className="w-full max-w-[1000px] py-4">
+        <Image
+          src={'/horizontal.png'}
+          alt={'horizontal'}
+          sizes="100vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          width={500}
+          height={300}
+        />
       </div>
 
       <div className="relative">
         <div className="relative w-full max-w-[1000px] mx-auto">
           <Image
-            src={'/static1.png'}
+            src={'/static1edit.png'}
             alt={'static1'}
-            className="w-full min-h-[300px] h-auto object-cover object-center"
-            width={1920}
-            height={790}
+            sizes="100vw"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
+            width={2043}
+            height={766}
             priority
           />
           <div className="absolute inset-0 pointer-events-none">
@@ -194,10 +226,6 @@ export default function Home() {
             value="20 KW"
             label="DUAL MOTOR"
           />
-          <StatDisplay
-            value="3.10x1.50x0.66m"
-            label="DIMENSIONS"
-          />
         </div>
       </div>
 
@@ -206,10 +234,14 @@ export default function Home() {
           <Image
             src={'/static2.png'}
             alt={'static1'}
-            className="w-full min-h-[300px] h-auto object-cover object-center"
-            width={1920} // Set appropriate width
-            height={790} // Match height with CSS
-            priority // Optional: for above-the-fold images
+            sizes="100vw"
+            style={{
+              width: '100%',
+              height: 'auto',
+            }}
+            width={2043}
+            height={766}
+            priority
           />
           <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
@@ -218,105 +250,334 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="flex flex-col gap-12">
+      <StatDisplay
+        value="3.10x1.50x0.66m"
+        label="DIMENSIONS"
+      />
+
+      <div className="flex flex-col px-10 pt-8">
         <div
-          className="min-w-72"
+          className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
-          <div className="flex gap-2 items-baseline">
-            <h3 className="text-xl md:text-3xl">ICONIC</h3>
-            <h4 className="text-xs md:text-base">DESIGN</h4>
+          <div className="iconic-design-header my-[-8px]">
+            <h3>ICONIC</h3>
+            <h4>DESIGN</h4>
           </div>
-          <div className="flex gap-2 items-baseline">
-            <h4 className="text-xs md:text-base">LAST</h4>
-            <h3 className="text-xl md:text-3xl">FOREVER</h3>
+          <div className="iconic-design-header">
+            <h4>LAST</h4>
+            <h3>FOREVER</h3>
           </div>
         </div>
+        <p className="avenirRoman text-[18px] w-full md:w-7/10 ">
+          The Thrill of 1960’s Formula 1 Racing – Reimagined in 3/4 Scale, Powered by Electric Innovation. meticulously detailed, fully electric 3/4 scale replicas of iconic 1960’s Formula 1 cars. Designed for both, collectors and enthusiasts, these cars capture the essence of that legendary racing
+          era, blending classic aesthetics with cutting-edge technology.
+        </p>
+      </div>
 
-        <div className="relative">
-          <div className="relative w-full max-w-[1000px] mx-auto">
-            <Image
-              src={'/fade1.png'}
-              alt={'fade1'}
-              className="w-full min-h-[300px] h-auto object-cover object-center"
-              width={1920} // Set appropriate width
-              height={790} // Match height with CSS
-              priority // Optional: for above-the-fold images
-            />
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
-              <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+        <Image
+          src={'/horizontal-single.png'}
+          alt={'horizontal'}
+          sizes="40vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          width={356}
+          height={2}
+        />
+      </div>
+
+      <div className="w-full max-w-[1000px] mx-auto ">
+        <Slider {...settings}>
+          {swiper1.map((image, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center ">
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className=" mx-auto"
+              />
             </div>
-          </div>
-        </div>
+          ))}
+        </Slider>
+      </div>
 
+      <div className="flex flex-col px-10 pt-8">
         <div
-          className="min-w-72"
+          className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
-          <div className="flex gap-2 items-baseline">
-            <h3 className="text-xl md:text-3xl">DETAILED</h3>
+          <div className="iconic-design-header my-[-8px]">
+            <h3>DETAILED</h3>
           </div>
-          <div className="flex gap-2 items-baseline">
-            <h4 className="text-xs md:text-base">AND</h4>
-            <h3 className="text-xl md:text-3xl">ELECTRIC</h3>
+          <div className="iconic-design-header">
+            <h4>AND</h4>
+            <h3>ELECTRIC</h3>
           </div>
         </div>
+        <div className="flex flex-col md:flex-row gap-5">
+          <p className="avenirRoman text-[18px] w-full md:w-7/10 ">Designed for both collectors and enthusiasts, these cars capture the essence of that legendary racing era, blending classic aesthetics with cutting-edge technology. </p>
+          <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
+        </div>
+      </div>
 
-        <div className="relative">
-          <div className="relative w-full max-w-[1000px] mx-auto">
-            <Image
-              src={'/fade2.png'}
-              alt={'fade2'}
-              className="w-full min-h-[300px] h-auto object-cover object-center"
-              width={1920} // Set appropriate width
-              height={790} // Match height with CSS
-              priority // Optional: for above-the-fold images
-            />
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
-              <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+        <Image
+          src={'/horizontal-single.png'}
+          alt={'horizontal'}
+          sizes="40vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          width={356}
+          height={2}
+        />
+      </div>
+
+      <div className="w-full max-w-[1000px] mx-auto ">
+        <Slider
+          {...settings}
+          slidesToScroll={-1}>
+          {swiper2.map((image, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center">
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className=" mx-auto"
+              />
             </div>
-          </div>
-        </div>
+          ))}
+        </Slider>
+      </div>
 
+      <div className="flex flex-col px-10 pt-8">
         <div
-          className="min-w-72"
+          className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
-          <div className="flex gap-2 items-baseline">
-            <h3 className="text-xl md:text-3xl">BEYOND</h3>
+          <div className="iconic-design-header my-[-8px]">
+            <h3>BEYOND</h3>
           </div>
-          <div className="flex gap-2 items-baseline">
-            <h4 className="text-xs md:text-base">THE</h4>
-            <h3 className="text-xl md:text-3xl">REPLICA</h3>
+          <div className="iconic-design-header">
+            <h4>THE</h4>
+            <h3>REPLICA</h3>
           </div>
         </div>
+        <div className="flex flex-col md:flex-row gap-5">
+          <p className="avenirRoman text-[18px] w-full md:w-7/10">The way we see it, if you're gonna build a replica car, blending classic aesthetics with cutting-edge technolgy... why not do it with some style?.</p>
+          <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
+        </div>
+      </div>
 
-        <div className="relative">
-          <div className="relative w-full max-w-[1000px] mx-auto">
-            <Image
-              src={'/fade3.png'}
-              alt={'fade3'}
-              className="w-full min-h-[300px] h-auto object-cover object-center"
-              width={1920} // Set appropriate width
-              height={790} // Match height with CSS
-              priority // Optional: for above-the-fold images
-            />
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
-              <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+        <Image
+          src={'/horizontal-single.png'}
+          alt={'horizontal'}
+          sizes="40vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          width={356}
+          height={2}
+        />
+      </div>
+
+      <div className="w-full max-w-[1000px] mx-auto ">
+        <Slider {...settings}>
+          {swiper3.map((image, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center">
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="mx-auto"
+              />
             </div>
+          ))}
+        </Slider>
+      </div>
+
+      <div className="flex flex-col px-10 pt-8">
+        <div
+          className="min-w-72 thonburiRegular pb-4"
+          style={{ color: '#d49600' }}>
+          <div className="iconic-design-header my-[-8px]">
+            <h3>FEEL</h3>
+          </div>
+          <div className="iconic-design-header">
+            <h4>THE</h4>
+            <h3>COSWORTH</h3>
           </div>
         </div>
 
-        <div
-          className="min-w-72"
-          style={{ color: '#d49600' }}>
-          <div className="flex gap-2 items-baseline">
-            <h3 className="text-xl md:text-3xl">FEEL</h3>
-            <h4 className="text-xs md:text-base">THE</h4>
-          </div>
-          <div className="flex gap-2 items-baseline">
-            <h3 className="text-xl md:text-3xl">COSWORTH</h3>
-          </div>
+        <div className="flex flex-col md:flex-row gap-5">
+          <p className="avenirRoman text-[18px] w-full  md:w-7/10">At FivePrix we believe that if an engine doesn't roar, it isn't alive, no matter how it runs. That's why we digitally developed the exhaust sound of the original Cosworth V8 used on the 1967 Lotus 49.</p>
+          <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
+        </div>
+      </div>
+
+      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+        <Image
+          src={'/horizontal-single.png'}
+          alt={'horizontal'}
+          sizes="40vw"
+          style={{
+            width: '100%',
+            height: 'auto',
+          }}
+          width={356}
+          height={2}
+        />
+      </div>
+
+      <div className="h-10"></div>
+
+      <div className=" w-full min-h-[800px] h-[800px] relative flex justify-center items-center z-50">
+        <div className=" h-full absolute top-0 left-0 right-0 overflow-hidden">
+          <Image
+            src={'/form-background.png'}
+            alt={'back'}
+            layout="fill"
+            objectFit="cover"
+          />
+        </div>
+        <div className="relative w-full h-1/2 my-auto flex flex-col justify-around gap-4">
+          <h2 className="text-center">ASK YOUR QUESTION</h2>
+          <form
+            onSubmit={handleSubmit}
+            className="px-10">
+            <div className="flex justify-center flex-wrap gap-10 items-center px-20 my-4">
+              <input
+                name="firstName"
+                placeholder="First name"
+                value={formData.firstName}
+                onChange={handleChange}
+              />
+              <input
+                name="lastName"
+                placeholder="Last name"
+                value={formData.lastName}
+                onChange={handleChange}
+              />
+              <input
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+
+<div className="relative">
+              <div
+                className="border border-bottom-gold cursor-pointer flex justify-between items-center input-select"
+                onClick={() => setCountryOpen(!countryOpen)}>
+                <span className={` px-4 pb-1 ${formData.country ? 'text-black' : 'text-gray-400'}`}>{formData.country || 'Where do you live?'}</span>
+                <svg
+                  className={`w-5 h-5 ml-1 mb-1 transition-transform ${countryOpen ? 'rotate-180' : ''}`}
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M7 10l5 5 5-5"
+                    stroke="#d49600"
+                    fill="none"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              {countryOpen && (
+                <div className="absolute top-full left-0 w-full bg-black border mt-1 border-gold">
+                  {options.map((opt) => (
+                    <div
+                      key={opt}
+                      className="p-2 hover:bg-[#d49600] cursor-pointer"
+                      onClick={() => {
+                        setFormData({ ...formData, country: opt });
+                        setCountryOpen(false);
+                      }}>
+                      {opt}
+                    </div>
+                  ))}
+                </div>
+              )}
+              </div>
+
+              <div className="relative">
+                <div
+                  className="border border-bottom-gold cursor-pointer flex justify-between items-center input-select"
+                  onClick={() => setHearUs(!hearUsOpen)}>
+                  <span className={` px-4 pb-1 ${formData.country ? 'text-black' : 'text-gray-400'}`}>{formData.country || 'Where do you heard about us?'}</span>
+                  <svg
+                    className={`w-5 h-5 ml-1 mb-1 transition-transform ${hearUsOpen ? 'rotate-180' : ''}`}
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M7 10l5 5 5-5"
+                      stroke="#d49600"
+                      fill="none"
+                      strokeWidth="2"
+                    />
+                  </svg>
+                </div>
+                {hearUsOpen && (
+                  <div className="absolute top-10 left-0 w-full bg-black border mt-1 border-gold">
+                    {options.map((opt) => (
+                      <div
+                        key={opt}
+                        className="p-2 hover:bg-[#d49600] cursor-pointer"
+                        onClick={() => {
+                          setFormData({ ...formData, hearUs: opt });
+                          setHearUs(false);
+                        }}>
+                        {opt}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+
+              <div className="relative">
+              <div
+                className="border border-bottom-gold cursor-pointer flex justify-between items-center input-select"
+                onClick={() => setInquiryOpen(!inquiryOpen)}>
+                <span className={` px-4 pb-1 ${formData.country ? 'text-black' : 'text-gray-400'}`}>{formData.country || 'What is your inquiry??'}</span>
+                <svg
+                  className={`w-5 h-5 ml-1 mb-1 transition-transform ${inquiryOpen ? 'rotate-180' : ''}`}
+                  viewBox="0 0 24 24">
+                  <path
+                    d="M7 10l5 5 5-5"
+                    stroke="#d49600"
+                    fill="none"
+                    strokeWidth="2"
+                  />
+                </svg>
+              </div>
+              {inquiryOpen && (
+                <div className="absolute top-full left-0 w-full bg-black border mt-1 border-gold">
+                  {options.map((opt) => (
+                    <div
+                      key={opt}
+                      className="p-2 hover:bg-[#d49600] cursor-pointer"
+                      onClick={() => {
+                        setFormData({ ...formData, inquiry: opt });
+                        setInquiryOpen(false);
+                      }}>
+                      {opt}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+            </div>
+
+            <button
+              className="btnExplore w-full mx-auto mt-20 md:w-3/10"
+              type="submit">
+              Submit
+            </button>
+          </form>
         </div>
       </div>
     </div>
