@@ -117,7 +117,7 @@ export default function Home() {
   return (
     <div className="flex flex-col items-center max-w-[1300px] mx-auto">
       <nav className="w-full bg-black/80 flex justify-center fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-[650px] w-full px-4 py-3 flex items-center justify-between flex-wrap">
+        <div className="max-w-[650px] w-full px-4 py-2 flex items-center justify-between flex-wrap">
           <div className="transform hover:scale-105 transition-transform duration-200">
             <div className="relative w-[120px] h-[24px]">
               <Image
@@ -130,11 +130,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-3 items-center">
             {['MAIN', 'MODELS', 'STORY', 'CONTACT'].map((item) => (
               <button
                 key={item}
-                className="text-white text-xs md:text-sm hover:text-gray-300 px-1 md:px-4 py-2 
+                className="text-white text-[11px] md:text-sm hover:text-gray-300 md:px-4 mt-1 py-2
                          transition-all duration-200 ease-in-out
                          hover:scale-105 relative
                          after:content-[''] after:absolute after:w-0 
