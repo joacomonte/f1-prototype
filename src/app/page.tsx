@@ -255,7 +255,7 @@ export default function Home() {
         label="DIMENSIONS"
       />
 
-      <div className="flex flex-col px-10 pt-8">
+      <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
         <div
           className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
@@ -304,7 +304,7 @@ export default function Home() {
         </Slider>
       </div>
 
-      <div className="flex flex-col px-10 pt-8">
+      <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
         <div
           className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
@@ -354,7 +354,7 @@ export default function Home() {
         </Slider>
       </div>
 
-      <div className="flex flex-col px-10 pt-8">
+      <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
         <div
           className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
@@ -402,7 +402,7 @@ export default function Home() {
         </Slider>
       </div>
 
-      <div className="flex flex-col px-10 pt-8">
+      <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
         <div
           className="min-w-72 thonburiRegular pb-4"
           style={{ color: '#d49600' }}>
