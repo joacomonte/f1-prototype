@@ -190,7 +190,6 @@ export default function Home() {
           Your browser does not support the video tag.
         </video>
         <div className="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
-
       </div>
 
       <div className="w-full max-w-[1000px] py-4">
@@ -274,6 +273,13 @@ export default function Home() {
         value="3.10x1.50x0.66m"
         label="DIMENSIONS"
       /> */}
+
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex gap-1 items-center">
+          <span className="md:text-2xl text-[15px] text-white">3.10x1.50x0.66m</span>
+        </div>
+        <p className="md:text-base text-[10px] avenirBook text-[#d49600]">DIMENSIONS</p>
+      </div>
 
       <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
         <div
@@ -455,7 +461,7 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col w-full justify-between md:flex-row gap-5">
-          <p className="avenirRoman text-[18px]  w-full md:w-4/6 text-white text-opacity-70" >At FivePrix we believe that if an engine doesn't roar, it isn't alive, no matter how it runs. That's why we digitally developed the exhaust sound of the original Cosworth V8 used on the 1967 Lotus 49.</p>
+          <p className="avenirRoman text-[18px]  w-full md:w-4/6 text-white text-opacity-70">At FivePrix we believe that if an engine doesn't roar, it isn't alive, no matter how it runs. That's why we digitally developed the exhaust sound of the original Cosworth V8 used on the 1967 Lotus 49.</p>
           <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
         </div>
       </div>
@@ -741,13 +747,10 @@ export default function Home() {
   );
 }
 
-
-
-  // <motion.div
-  //   className="w-full px-4"
-  //   initial={{ opacity: 0, y: 20 }}
-  //   whileInView={{ opacity: 1, y: 0 }}
-  //   viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
-  //   transition={{ duration: 0.6 }}>
-  // </motion.div>
-
+// <motion.div
+//   className="w-full px-4"
+//   initial={{ opacity: 0, y: 20 }}
+//   whileInView={{ opacity: 1, y: 0 }}
+//   viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
+//   transition={{ duration: 0.6 }}>
+// </motion.div>
