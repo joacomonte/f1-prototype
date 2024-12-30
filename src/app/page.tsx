@@ -18,7 +18,7 @@ export default function Home() {
 
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const swiper1 = ['swiper1-01.jpg', 'swiper1-02.jpg', 'swiper1-03.png', 'swiper1-04.png'];
+  const swiper1 = ['swiper1-01.png', 'swiper1-02.png', 'swiper1-03.png', 'swiper1-04.png'];
 
   const swiper2 = ['swiper2-01.png', 'swiper2-02.png', 'swiper2-03.png', 'swiper2-04.png'];
 
@@ -130,9 +130,9 @@ export default function Home() {
   // }, []);
 
   return (
-    <div className="flex flex-col items-center  mx-auto">
-      <nav className="w-full bg-black/80 flex justify-center fixed top-0 left-0 right-0 z-50">
-        <div className="max-w-[650px] w-full px-4 py-2 flex items-center justify-between flex-wrap">
+    <div className="flex flex-col items-center  mx-auto ">
+      <nav className="w-full bg-black/80 flex justify-center fixed top-0 left-0 right-0 z-[100]">
+        <div className="max-w-[650px] w-full px-4 py-2 flex items-center justify-between flex-wrap ">
           <div className="transform hover:scale-105 transition-transform duration-200">
             <div className="relative w-[120px] h-[24px]">
               <Image
@@ -682,7 +682,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="footer-icons-container">
+        <div className="footer-icons-container text-center">
           <span>face</span>
           <span>insta</span>
           <span>YT</span>
