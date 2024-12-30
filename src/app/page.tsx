@@ -165,7 +165,7 @@ export default function Home() {
 
       <div
         ref={containerRef}
-        className="relativ mx-auto w-full h-full group">
+        className="relative mx-auto w-full h-full group">
         <video
           ref={videoRef}
           className=" shadow-lg transition-transform duration-300 w-full h-full min-h-[350px] object-cover"
@@ -189,6 +189,8 @@ export default function Home() {
           />
           Your browser does not support the video tag.
         </video>
+        <div className="absolute bottom-0 left-0 w-full h-[50%] bg-gradient-to-t from-black to-transparent pointer-events-none"></div>
+
       </div>
 
       <div className="w-full max-w-[1000px] py-4">
@@ -265,10 +267,6 @@ export default function Home() {
             height={766}
             priority
           />
-          {/* <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
-            <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
-          </div> */}
         </div>
       </div>
 
@@ -290,7 +288,7 @@ export default function Home() {
             <h3>FOREVER</h3>
           </div>
         </div>
-        <p className="avenirRoman text-[18px] w-full md:w-7/10 ">
+        <p className="avenirRoman text-[18px] w-full md:w-5/10 text-white text-opacity-70">
           The Thrill of 1960’s Formula 1 Racing – Reimagined in 3/4 Scale, Powered by Electric Innovation. meticulously detailed, fully electric 3/4 scale replicas of iconic 1960’s Formula 1 cars. Designed for both, collectors and enthusiasts, these cars capture the essence of that legendary racing
           era, blending classic aesthetics with cutting-edge technology.
         </p>
@@ -311,7 +309,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto ">
+      <div className="relative w-full max-w-[1000px] mx-auto ">
         <Slider {...settings}>
           {swiper1.map((image, index) => (
             <div
@@ -325,6 +323,12 @@ export default function Home() {
             </div>
           ))}
         </Slider>
+
+        <div className="pointer-events-none absolute inset-0 flex justify-between">
+          <div className="w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+          <div className="flex-grow"></div>
+          <div className="w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+        </div>
       </div>
 
       <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
@@ -339,8 +343,8 @@ export default function Home() {
             <h3>ELECTRIC</h3>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-5">
-          <p className="avenirRoman text-[18px] w-full md:w-7/10 ">Designed for both collectors and enthusiasts, these cars capture the essence of that legendary racing era, blending classic aesthetics with cutting-edge technology. </p>
+        <div className="flex flex-col w-full justify-between md:flex-row gap-5">
+          <p className="avenirRoman text-[18px] w-full md:w-4/6 text-white text-opacity-70">Designed for both collectors and enthusiasts, these cars capture the essence of that legendary racing era, blending classic aesthetics with cutting-edge technology. </p>
           <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
         </div>
       </div>
@@ -360,7 +364,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto ">
+      <div className=" relative w-full max-w-[1000px] mx-auto ">
         <Slider
           {...settings}
           slidesToScroll={-1}>
@@ -376,6 +380,11 @@ export default function Home() {
             </div>
           ))}
         </Slider>
+        <div className="pointer-events-none absolute inset-0 flex justify-between">
+          <div className="w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+          <div className="flex-grow"></div>
+          <div className="w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+        </div>
       </div>
 
       <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
@@ -390,8 +399,8 @@ export default function Home() {
             <h3>REPLICA</h3>
           </div>
         </div>
-        <div className="flex flex-col md:flex-row gap-5">
-          <p className="avenirRoman text-[18px] w-full md:w-7/10">The way we see it, if you're gonna build a replica car, blending classic aesthetics with cutting-edge technolgy... why not do it with some style?.</p>
+        <div className="flex flex-col w-full justify-between md:flex-row gap-5">
+          <p className="avenirRoman text-[18px]  w-full md:w-4/6 text-white text-opacity-70">The way we see it, if you're gonna build a replica car, blending classic aesthetics with cutting-edge technolgy... why not do it with some style?.</p>
           <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
         </div>
       </div>
@@ -411,7 +420,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="w-full max-w-[1000px] mx-auto ">
+      <div className=" relative w-full max-w-[1000px] mx-auto ">
         <Slider {...settings}>
           {swiper3.map((image, index) => (
             <div
@@ -425,6 +434,11 @@ export default function Home() {
             </div>
           ))}
         </Slider>
+        <div className="pointer-events-none absolute inset-0 flex justify-between">
+          <div className="w-1/6 bg-gradient-to-r from-black to-transparent"></div>
+          <div className="flex-grow"></div>
+          <div className="w-1/6 bg-gradient-to-l from-black to-transparent"></div>
+        </div>
       </div>
 
       <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
@@ -440,8 +454,8 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row gap-5">
-          <p className="avenirRoman text-[18px] w-full  md:w-7/10">At FivePrix we believe that if an engine doesn't roar, it isn't alive, no matter how it runs. That's why we digitally developed the exhaust sound of the original Cosworth V8 used on the 1967 Lotus 49.</p>
+        <div className="flex flex-col w-full justify-between md:flex-row gap-5">
+          <p className="avenirRoman text-[18px]  w-full md:w-4/6 text-white text-opacity-70" >At FivePrix we believe that if an engine doesn't roar, it isn't alive, no matter how it runs. That's why we digitally developed the exhaust sound of the original Cosworth V8 used on the 1967 Lotus 49.</p>
           <button className="btnExplore py-2 w-full my-auto md:w-3/10">Explore</button>
         </div>
       </div>
@@ -473,11 +487,11 @@ export default function Home() {
           />
         </div>
         <div className="relative w-full  h-1/2 my-auto max-w-[1200px] flex flex-col justify-around gap-4">
-          <h2 className="text-center">ASK YOUR QUESTION</h2>
+          <h2 className="text-center text-[25px] tracking-widest">ASK YOUR QUESTION</h2>
           <form
             onSubmit={handleSubmit}
             className="px-10">
-            <div className="flex justify-center flex-wrap gap-10 items-center px-20 my-4">
+            <div className="flex justify-center flex-wrap gap-10 items-center px-20 my-4 text-xl">
               <input
                 className="border-bottom-gold w-[250px] max-w-[250px]"
                 name="firstName"
@@ -507,7 +521,7 @@ export default function Home() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={() => setCountryOpen(true)}
-                    placeholder="Where do you live?"
+                    placeholder="Where do you live?*"
                     className="w-full px-4 pb-1 focus:outline-none"
                   />
                   <svg
@@ -555,7 +569,7 @@ export default function Home() {
                     value={formData.hearUs}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={() => setHearUsOpen(true)}
-                    placeholder="How did you find us?"
+                    placeholder="How did you find us?*"
                     className="w-full px-4 pb-1 focus:outline-none"
                   />
                   <svg
@@ -598,7 +612,7 @@ export default function Home() {
                     value={formData.inquiry}
                     onChange={(e) => setSearchTerm(e.target.value)}
                     onFocus={() => setInquiryOpen(true)}
-                    placeholder="Your enquiry"
+                    placeholder="Your enquiry*"
                     className="w-full px-4 pb-1 focus:outline-none"
                   />
                   <svg
@@ -659,9 +673,9 @@ export default function Home() {
         />
       </div>
 
-      <div className="footer-container w-full">
-        <div className=" footer-buttons flex flex-wrap justify-around max-w-[1300px] mx-auto py-8">
-          <div className="flex flex-col">
+      <div className="footer-container w-full px-[10vw] max-w-[1300px]">
+        <div className=" footer-buttons flex flex-col justify-center items-center gap-8 md:flex-row md:items-start md:justify-around">
+          <div className="flex flex-col min-w-[210px]">
             <h4>MODELS</h4>
             <span className="!text-white">LOTUS 49</span>
             <span>EAGLE T1G</span>
@@ -669,13 +683,13 @@ export default function Home() {
             <span>HONDA RA300</span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-[210px]">
             <h4>ABOUT</h4>
             <span>FIVERPRIK STORY</span>
             <span>PRESS</span>
           </div>
 
-          <div className="flex flex-col">
+          <div className="flex flex-col min-w-[210px]">
             <h4>SERVICE</h4>
             <span>APP UPDATE</span>
             <span>ASSISTANCE</span>
@@ -702,7 +716,7 @@ export default function Home() {
             height={3}
           />
         </div>
-        <h3 className="avenirLight text-[25px] tracking-widest text-center">TERMS & CONDITIONS</h3>
+        <h3 className="avenirLight text-[25px] tracking-widest text-center py-8">TERMS & CONDITIONS</h3>
         <div className="w-full py-8">
           <Image
             src={'/horizontal-single.png'}
@@ -727,95 +741,13 @@ export default function Home() {
   );
 }
 
-/*
-      { <div className="w-full flex flex-col items-center py-8">
-        <motion.div
-          className="w-full px-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
-          transition={{ duration: 0.6 }}>
-          <Image
-            src="/car2.jpg"
-            alt="Car 2"
-            className="w-full max-h-[400px] object-cover mx-auto"
-            width={1920}
-            height={400}
-          />
-        </motion.div>
 
-        <motion.div
-          className="max-w-[700px] max-h-96 text-left pr-[20%] py-8"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}>
-          <h2 className="text-3xl font-bold mb-4">The Evolution of Speed</h2>
-          <p className="text-gray-700 leading-relaxed">
-            From the earliest days of motorsport to the cutting-edge machines of today, our collection represents the pinnacle of automotive engineering. Each vehicle tells a story of innovation, passion, and the relentless pursuit of performance. These masterpieces have not just shaped racing
-            history; they've defined generations of automotive excellence.
-          </p>
-        </motion.div>
 
-        <motion.div
-          className="w-full px-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 0.6 }}>
-          <Image
-            src="/car3.jpg"
-            alt="Car 3"
-            className="w-full max-h-[400px] object-cover mx-auto"
-            width={1920}
-            height={400}
-          />
-        </motion.div>
+  // <motion.div
+  //   className="w-full px-4"
+  //   initial={{ opacity: 0, y: 20 }}
+  //   whileInView={{ opacity: 1, y: 0 }}
+  //   viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
+  //   transition={{ duration: 0.6 }}>
+  // </motion.div>
 
-        <motion.div
-          className="max-w-[700px] max-h-96 text-left pr-[20%] py-8"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
-          transition={{ duration: 0.8, ease: 'easeOut' }}>
-          <h2 className="text-3xl font-bold mb-4">The Evolution of Speed</h2>
-          <p className="text-gray-700 leading-relaxed">
-            From the earliest days of motorsport to the cutting-edge machines of today, our collection represents the pinnacle of automotive engineering. Each vehicle tells a story of innovation, passion, and the relentless pursuit of performance. These masterpieces have not just shaped racing
-            history; they've defined generations of automotive excellence.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="w-full px-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3, margin: '0px 0px -200px 0px' }}
-          transition={{ duration: 0.6 }}>
-          <Image
-            src="/car4.jpg"
-            alt="Car 4"
-            className="w-full max-h-[400px] object-cover mx-auto"
-            width={1920}
-            height={400}
-          />
-        </motion.div>
-      </div> }
-*/
-
-/* <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
-  <div className="flex gap-4 pointer-events-auto">
-    <button
-      onClick={togglePlay}
-      className="p-3 rounded-full bg-white shadow-md bg-opacity-70 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-110"
-      aria-label={isPlaying ? 'Pause' : 'Play'}>
-      {isPlaying ? <Pause className="w-6 h-6 text-black" /> : <Play className="w-6 h-6 text-black" />}
-    </button>
-    <button
-      onClick={toggleFullscreen}
-      className="p-3 rounded-full bg-white shadow-md bg-opacity-70 hover:bg-opacity-70 transition-all duration-300 transform hover:scale-110"
-      aria-label="Toggle fullscreen">
-      <Maximize className="w-6 h-6 text-black" />
-    </button>
-  </div>
-</div>
- */
