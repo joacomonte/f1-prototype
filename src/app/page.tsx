@@ -1,19 +1,34 @@
 'use client';
-import { color, motion } from 'framer-motion';
 import Image from 'next/image';
 import React, { useState, useRef, useEffect } from 'react';
-import { Maximize, Pause, Play } from 'lucide-react';
+import countries from '@/app/data/countries.json';
 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { StatDisplay } from './components/StatDisplay';
+import { useClickOutside } from './hooks/useClickOutside';
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
+
   const [isLoading, setIsLoading] = useState(true);
+
   const videoRef = useRef<HTMLVideoElement>(null);
+
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const swiper1 = ['swiper1-01.jpg', 'swiper1-02.jpg', 'swiper1-03.png', 'swiper1-04.png'];
+
+  const swiper2 = ['swiper2-01.png', 'swiper2-02.png', 'swiper2-03.png', 'swiper2-04.png'];
+
+  const swiper3 = ['swiper3-01.png', 'swiper3-02.png', 'swiper3-03.png', 'swiper3-04.png'];
+
+  const hearUsList = ['GOOGLE', 'YOUTUBE', 'INSTAGRAM', 'AUTOCLASICA', 'OTRO'];
+
+  const inquiryList = ['HOW MUCH DOES IT COST?', 'GENERAL INFO'];
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -24,11 +39,17 @@ export default function Home() {
     inquiry: '',
   });
 
+  const inquiryRef = useRef(null);
+  const countryRef = useRef(null);
+  const hearUsRef = useRef(null);
+
   const [countryOpen, setCountryOpen] = useState(false);
   const [inquiryOpen, setInquiryOpen] = useState(false);
-  const [hearUsOpen, setHearUs] = useState(false);
+  const [hearUsOpen, setHearUsOpen] = useState(false);
 
-  const options = ['USA', 'UK', 'Canada'];
+  useClickOutside(countryRef, () => setCountryOpen(false));
+  useClickOutside(inquiryRef, () => setInquiryOpen(false));
+  useClickOutside(hearUsRef, () => setHearUsOpen(false));
 
   const handleChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target;
@@ -42,12 +63,6 @@ export default function Home() {
     e.preventDefault();
     console.log(formData);
   };
-
-  const swiper1 = ['swiper1-01.jpg', 'swiper1-02.jpg', 'swiper1-03.png', 'swiper1-04.png'];
-
-  const swiper2 = ['swiper2-01.png', 'swiper2-02.png', 'swiper2-03.png', 'swiper2-04.png'];
-
-  const swiper3 = ['swiper3-01.png', 'swiper3-02.png', 'swiper3-03.png', 'swiper3-04.png'];
 
   const settings = {
     infinite: true,
@@ -64,58 +79,58 @@ export default function Home() {
     adaptiveHeight: true, // enables dynamic height adjustment
   };
 
-  useEffect(() => {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
+  // useEffect(() => {
+  //   const videoElement = videoRef.current;
+  //   if (!videoElement) return;
 
-    const handleLoadedData = () => {
-      setIsLoading(false);
-      videoElement
-        .play()
-        .then(() => {
-          setIsPlaying(true);
-        })
-        .catch((error) => {
-          console.error('Error auto-playing video:', error);
-          setIsPlaying(false);
-        });
-    };
+  //   const handleLoadedData = () => {
+  //     setIsLoading(false);
+  //     videoElement
+  //       .play()
+  //       .then(() => {
+  //         setIsPlaying(true);
+  //       })
+  //       .catch((error) => {
+  //         console.error('Error auto-playing video:', error);
+  //         setIsPlaying(false);
+  //       });
+  //   };
 
-    const handleEnded = () => {
-      setIsPlaying(false);
-    };
+  //   const handleEnded = () => {
+  //     setIsPlaying(false);
+  //   };
 
-    const handlePause = () => {
-      setIsPlaying(false);
-    };
+  //   const handlePause = () => {
+  //     setIsPlaying(false);
+  //   };
 
-    const handlePlay = () => {
-      setIsPlaying(true);
-    };
+  //   const handlePlay = () => {
+  //     setIsPlaying(true);
+  //   };
 
-    const handleError = () => {
-      setIsLoading(false);
-      setIsPlaying(false);
-      console.error('Error loading video');
-    };
+  //   const handleError = () => {
+  //     setIsLoading(false);
+  //     setIsPlaying(false);
+  //     console.error('Error loading video');
+  //   };
 
-    videoElement.addEventListener('loadeddata', handleLoadedData);
-    videoElement.addEventListener('ended', handleEnded);
-    videoElement.addEventListener('pause', handlePause);
-    videoElement.addEventListener('play', handlePlay);
-    videoElement.addEventListener('error', handleError);
+  //   videoElement.addEventListener('loadeddata', handleLoadedData);
+  //   videoElement.addEventListener('ended', handleEnded);
+  //   videoElement.addEventListener('pause', handlePause);
+  //   videoElement.addEventListener('play', handlePlay);
+  //   videoElement.addEventListener('error', handleError);
 
-    return () => {
-      videoElement.removeEventListener('loadeddata', handleLoadedData);
-      videoElement.removeEventListener('ended', handleEnded);
-      videoElement.removeEventListener('pause', handlePause);
-      videoElement.removeEventListener('play', handlePlay);
-      videoElement.removeEventListener('error', handleError);
-    };
-  }, []);
+  //   return () => {
+  //     videoElement.removeEventListener('loadeddata', handleLoadedData);
+  //     videoElement.removeEventListener('ended', handleEnded);
+  //     videoElement.removeEventListener('pause', handlePause);
+  //     videoElement.removeEventListener('play', handlePlay);
+  //     videoElement.removeEventListener('error', handleError);
+  //   };
+  // }, []);
 
   return (
-    <div className="flex flex-col items-center max-w-[1300px] mx-auto">
+    <div className="flex flex-col items-center  mx-auto">
       <nav className="w-full bg-black/80 flex justify-center fixed top-0 left-0 right-0 z-50">
         <div className="max-w-[650px] w-full px-4 py-2 flex items-center justify-between flex-wrap">
           <div className="transform hover:scale-105 transition-transform duration-200">
@@ -150,21 +165,24 @@ export default function Home() {
 
       <div
         ref={containerRef}
-        className="relative w-full mx-auto max-w-[1000px] group">
+        className="relativ mx-auto w-full h-full group">
         <video
           ref={videoRef}
-          className=" shadow-lg transition-transform duration-300 w-full min-h-[350px] h-auto object-cover object-center"
+          className=" shadow-lg transition-transform duration-300 w-full h-full min-h-[350px] object-cover"
           preload="metadata"
           playsInline
-          width={1920}
-          height={1080}
           webkit-playsinline="true"
           x-webkit-airplay="allow"
           poster="/1frame.jpg"
           loop
           muted
           autoPlay
-          style={{ margin: 0, verticalAlign: 'middle' }}>
+          style={{
+            width: '100%',
+            height: 'auto',
+            display: 'block', // Prevent extra spacing below the video
+            objectFit: 'cover', // Ensures the video maintains aspect ratio and covers the container
+          }}>
           <source
             src="/banner.mp4"
             type="video/mp4"
@@ -201,29 +219,33 @@ export default function Home() {
             height={766}
             priority
           />
-          <div className="absolute inset-0 pointer-events-none">
+          {/* <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
             <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       <div className="flex justify-center w-full">
         <div className="flex justify-around flex-wrap items-center w-[1000px] gap-2">
           <StatDisplay
-            value="2.88 KW"
+            value={2.88}
+            unit="KW"
             label="BATTERY CAPACITY"
           />
           <StatDisplay
-            value="95 Km/h"
+            value={95}
+            unit="Km/h"
             label="TOP SPEED"
           />
           <StatDisplay
-            value="240 Kg"
+            value={240}
+            unit="Kg"
             label="WEIGHT"
           />
           <StatDisplay
-            value="20 KW"
+            value={20}
+            unit="KW"
             label="DUAL MOTOR"
           />
         </div>
@@ -243,17 +265,17 @@ export default function Home() {
             height={766}
             priority
           />
-          <div className="absolute inset-0 pointer-events-none">
+          {/* <div className="absolute inset-0 pointer-events-none">
             <div className="absolute inset-y-0 left-0 w-1/6 bg-gradient-to-r from-black to-transparent"></div>
             <div className="absolute inset-y-0 right-0 w-1/6 bg-gradient-to-l from-black to-transparent"></div>
-          </div>
+          </div> */}
         </div>
       </div>
 
-      <StatDisplay
+      {/* <StatDisplay
         value="3.10x1.50x0.66m"
         label="DIMENSIONS"
-      />
+      /> */}
 
       <div className="flex flex-col px-10 pt-8 max-w-[1000px]">
         <div
@@ -274,17 +296,18 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+      <div className="w-full py-8">
         <Image
           src={'/horizontal-single.png'}
           alt={'horizontal'}
-          sizes="40vw"
+          sizes="100vw"
           style={{
             width: '100%',
-            height: 'auto',
+            maxHeight: '3px',
+            objectFit: 'cover',
           }}
-          width={356}
-          height={2}
+          width={0} // Set width to 0 to use the full width
+          height={3}
         />
       </div>
 
@@ -322,17 +345,18 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+      <div className="w-full py-8">
         <Image
           src={'/horizontal-single.png'}
           alt={'horizontal'}
-          sizes="40vw"
+          sizes="100vw"
           style={{
             width: '100%',
-            height: 'auto',
+            maxHeight: '3px',
+            objectFit: 'cover',
           }}
-          width={356}
-          height={2}
+          width={0} // Set width to 0 to use the full width
+          height={3}
         />
       </div>
 
@@ -372,17 +396,18 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+      <div className="w-full py-8">
         <Image
           src={'/horizontal-single.png'}
           alt={'horizontal'}
-          sizes="40vw"
+          sizes="100vw"
           style={{
             width: '100%',
-            height: 'auto',
+            maxHeight: '3px',
+            objectFit: 'cover',
           }}
-          width={356}
-          height={2}
+          width={0} // Set width to 0 to use the full width
+          height={3}
         />
       </div>
 
@@ -408,9 +433,9 @@ export default function Home() {
           style={{ color: '#d49600' }}>
           <div className="iconic-design-header my-[-8px]">
             <h3>FEEL</h3>
+            <h4>THE</h4>
           </div>
           <div className="iconic-design-header">
-            <h4>THE</h4>
             <h3>COSWORTH</h3>
           </div>
         </div>
@@ -421,17 +446,18 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="w-3/4 max-w-[1000px] mx-auto py-8">
+      <div className="w-full py-8">
         <Image
           src={'/horizontal-single.png'}
           alt={'horizontal'}
-          sizes="40vw"
+          sizes="100vw"
           style={{
             width: '100%',
-            height: 'auto',
+            maxHeight: '3px',
+            objectFit: 'cover',
           }}
-          width={356}
-          height={2}
+          width={0} // Set width to 0 to use the full width
+          height={3}
         />
       </div>
 
@@ -446,69 +472,92 @@ export default function Home() {
             objectFit="cover"
           />
         </div>
-        <div className="relative w-full h-1/2 my-auto flex flex-col justify-around gap-4">
+        <div className="relative w-full  h-1/2 my-auto max-w-[1200px] flex flex-col justify-around gap-4">
           <h2 className="text-center">ASK YOUR QUESTION</h2>
           <form
             onSubmit={handleSubmit}
             className="px-10">
             <div className="flex justify-center flex-wrap gap-10 items-center px-20 my-4">
               <input
+                className="border-bottom-gold w-[250px] max-w-[250px]"
                 name="firstName"
                 placeholder="First name"
                 value={formData.firstName}
                 onChange={handleChange}
               />
               <input
+                className="border-bottom-gold w-[250px] max-w-[250px]"
                 name="lastName"
                 placeholder="Last name"
                 value={formData.lastName}
                 onChange={handleChange}
               />
               <input
+                className="border-bottom-gold w-[250px] max-w-[250px]"
                 name="email"
                 placeholder="Email"
                 value={formData.email}
                 onChange={handleChange}
               />
 
-<div className="relative">
-              <div
-                className="border border-bottom-gold cursor-pointer flex justify-between items-center input-select"
-                onClick={() => setCountryOpen(!countryOpen)}>
-                <span className={` px-4 pb-1 ${formData.country ? 'text-black' : 'text-gray-400'}`}>{formData.country || 'Where do you live?'}</span>
-                <svg
-                  className={`w-5 h-5 ml-1 mb-1 transition-transform ${countryOpen ? 'rotate-180' : ''}`}
-                  viewBox="0 0 24 24">
-                  <path
-                    d="M7 10l5 5 5-5"
-                    stroke="#d49600"
-                    fill="none"
-                    strokeWidth="2"
+              <div className="relative ">
+                <div className=" flex items-center input-select min-w-[250px] w-[250px] max-w-[250px]">
+                  <input
+                    type="text"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setCountryOpen(true)}
+                    placeholder="Where do you live?"
+                    className="w-full px-4 pb-1 focus:outline-none"
                   />
-                </svg>
-              </div>
-              {countryOpen && (
-                <div className="absolute top-full left-0 w-full bg-black border mt-1 border-gold">
-                  {options.map((opt) => (
-                    <div
-                      key={opt}
-                      className="p-2 hover:bg-[#d49600] cursor-pointer"
-                      onClick={() => {
-                        setFormData({ ...formData, country: opt });
-                        setCountryOpen(false);
-                      }}>
-                      {opt}
-                    </div>
-                  ))}
+                  <svg
+                    className={`w-5 h-5 ml-1 mb-1 transition-transform ${countryOpen ? 'rotate-180' : ''}`}
+                    viewBox="0 0 24 24"
+                    onClick={() => setCountryOpen(!countryOpen)}>
+                    <path
+                      d="M7 10l5 5 5-5"
+                      stroke="#d49600"
+                      fill="none"
+                      strokeWidth="2"
+                    />
+                  </svg>
                 </div>
-              )}
+
+                {countryOpen && (
+                  <div
+                    ref={countryRef}
+                    className="absolute top-full left-0 w-full bg-black border mt-1 border-gold max-h-60 overflow-y-auto z-10">
+                    {countries
+                      .filter((country) => country.name.toLowerCase().includes(searchTerm.toLowerCase()))
+                      .map((country) => (
+                        <div
+                          key={country.code}
+                          className="p-2 hover:bg-[#d49600] cursor-pointer"
+                          onClick={() => {
+                            setFormData((prev) => ({
+                              ...prev,
+                              country: country.name,
+                            }));
+                            setCountryOpen(false);
+                            setSearchTerm(country.name);
+                          }}>
+                          {country.name}
+                        </div>
+                      ))}
+                  </div>
+                )}
               </div>
 
-              <div className="relative">
-                <div
-                  className="border border-bottom-gold cursor-pointer flex justify-between items-center input-select"
-                  onClick={() => setHearUs(!hearUsOpen)}>
-                  <span className={` px-4 pb-1 ${formData.country ? 'text-black' : 'text-gray-400'}`}>{formData.country || 'Where do you heard about us?'}</span>
+              <div className="relative ">
+                <div className=" flex items-center input-select min-w-[250px] w-[250px] max-w-[250px]">
+                  <input
+                    type="text"
+                    value={formData.hearUs}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setHearUsOpen(true)}
+                    placeholder="How did you find us?"
+                    className="w-full px-4 pb-1 focus:outline-none"
+                  />
                   <svg
                     className={`w-5 h-5 ml-1 mb-1 transition-transform ${hearUsOpen ? 'rotate-180' : ''}`}
                     viewBox="0 0 24 24">
@@ -521,14 +570,19 @@ export default function Home() {
                   </svg>
                 </div>
                 {hearUsOpen && (
-                  <div className="absolute top-10 left-0 w-full bg-black border mt-1 border-gold">
-                    {options.map((opt) => (
+                  <div
+                    ref={hearUsRef}
+                    className="absolute top-10 left-0 w-full bg-black border mt-1 border-gold z-10">
+                    {hearUsList.map((opt) => (
                       <div
                         key={opt}
                         className="p-2 hover:bg-[#d49600] cursor-pointer"
                         onClick={() => {
-                          setFormData({ ...formData, hearUs: opt });
-                          setHearUs(false);
+                          setFormData((prev) => ({
+                            ...prev,
+                            hearUs: opt,
+                          }));
+                          setHearUsOpen(false);
                         }}>
                         {opt}
                       </div>
@@ -537,39 +591,48 @@ export default function Home() {
                 )}
               </div>
 
-
-              <div className="relative">
-              <div
-                className="border border-bottom-gold cursor-pointer flex justify-between items-center input-select"
-                onClick={() => setInquiryOpen(!inquiryOpen)}>
-                <span className={` px-4 pb-1 ${formData.country ? 'text-black' : 'text-gray-400'}`}>{formData.country || 'What is your inquiry??'}</span>
-                <svg
-                  className={`w-5 h-5 ml-1 mb-1 transition-transform ${inquiryOpen ? 'rotate-180' : ''}`}
-                  viewBox="0 0 24 24">
-                  <path
-                    d="M7 10l5 5 5-5"
-                    stroke="#d49600"
-                    fill="none"
-                    strokeWidth="2"
+              <div className="relative ">
+                <div className=" flex items-center input-select min-w-[250px] w-[250px] max-w-[250px]">
+                  <input
+                    type="text"
+                    value={formData.inquiry}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onFocus={() => setInquiryOpen(true)}
+                    placeholder="Your enquiry"
+                    className="w-full px-4 pb-1 focus:outline-none"
                   />
-                </svg>
-              </div>
-              {inquiryOpen && (
-                <div className="absolute top-full left-0 w-full bg-black border mt-1 border-gold">
-                  {options.map((opt) => (
-                    <div
-                      key={opt}
-                      className="p-2 hover:bg-[#d49600] cursor-pointer"
-                      onClick={() => {
-                        setFormData({ ...formData, inquiry: opt });
-                        setInquiryOpen(false);
-                      }}>
-                      {opt}
-                    </div>
-                  ))}
+                  <svg
+                    className={`w-5 h-5 ml-1 mb-1 transition-transform ${inquiryOpen ? 'rotate-180' : ''}`}
+                    viewBox="0 0 24 24">
+                    <path
+                      d="M7 10l5 5 5-5"
+                      stroke="#d49600"
+                      fill="none"
+                      strokeWidth="2"
+                    />
+                  </svg>
                 </div>
-              )}
-            </div>
+                {inquiryOpen && (
+                  <div
+                    ref={inquiryRef}
+                    className="absolute top-full left-0 w-full bg-black border mt-1 border-gold">
+                    {inquiryList.map((opt) => (
+                      <div
+                        key={opt}
+                        className="p-2 hover:bg-[#d49600] cursor-pointer"
+                        onClick={() => {
+                          setFormData((prev) => ({
+                            ...prev,
+                            inquiry: opt,
+                          }));
+                          setInquiryOpen(false);
+                        }}>
+                        {opt}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
 
             <button
@@ -579,6 +642,86 @@ export default function Home() {
             </button>
           </form>
         </div>
+      </div>
+
+      <div className="w-full py-8">
+        <Image
+          src={'/horizontal-single.png'}
+          alt={'horizontal'}
+          sizes="100vw"
+          style={{
+            width: '100%',
+            maxHeight: '3px',
+            objectFit: 'cover',
+          }}
+          width={0} // Set width to 0 to use the full width
+          height={3}
+        />
+      </div>
+
+      <div className="footer-container w-full">
+        <div className=" footer-buttons flex flex-wrap justify-around max-w-[1300px] mx-auto py-8">
+          <div className="flex flex-col">
+            <h4>MODELS</h4>
+            <span className="!text-white">LOTUS 49</span>
+            <span>EAGLE T1G</span>
+            <span>FERARRI 312</span>
+            <span>HONDA RA300</span>
+          </div>
+
+          <div className="flex flex-col">
+            <h4>ABOUT</h4>
+            <span>FIVERPRIK STORY</span>
+            <span>PRESS</span>
+          </div>
+
+          <div className="flex flex-col">
+            <h4>SERVICE</h4>
+            <span>APP UPDATE</span>
+            <span>ASSISTANCE</span>
+          </div>
+        </div>
+
+        <div className="footer-icons-container">
+          <span>face</span>
+          <span>insta</span>
+          <span>YT</span>
+        </div>
+
+        <div className="w-full py-8">
+          <Image
+            src={'/horizontal-single.png'}
+            alt={'horizontal'}
+            sizes="100vw"
+            style={{
+              width: '100%',
+              maxHeight: '3px',
+              objectFit: 'cover',
+            }}
+            width={0} // Set width to 0 to use the full width
+            height={3}
+          />
+        </div>
+        <h3 className="avenirLight text-[25px] tracking-widest text-center">TERMS & CONDITIONS</h3>
+        <div className="w-full py-8">
+          <Image
+            src={'/horizontal-single.png'}
+            alt={'horizontal'}
+            sizes="100vw"
+            style={{
+              width: '100%',
+              maxHeight: '3px',
+              objectFit: 'cover',
+            }}
+            width={0} // Set width to 0 to use the full width
+            height={3}
+          />
+        </div>
+        <h3 className="avenirLight text-[25px] tracking-widest text-center">DISCLAIMER</h3>
+        <p className=" text-pretty px-[10vw] text-center text-[#6d6d6d] py-8 mb-10">
+          This website contains images of the product that include decals of certain brands for which authorization of use has been requested, without having yet received a response. The initial inclusion of said marks is intended solely to illustrate the design concept. It does not imply any
+          trademark use, and does not represent a guarantee that they will be present in the final product.
+        </p>
       </div>
     </div>
   );
